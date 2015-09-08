@@ -16,6 +16,7 @@ except pymongo.errors.ConnectionFailure, e:
    print "Could not connect to MongoDB: %s" % e
    conn
 
+#test
 
 db = conn['test-database4']
 
@@ -94,7 +95,8 @@ def go(name, address):
         tree = html.fromstring(page.text)
 
     except:
-        print("http connection failed, trying https now")
+        print("http connection failed, will try in 60 seconds")
+        time.sleep(60)
         page = requests.get(address)
         print('{} ({})'.format(page.url, page.status_code))
 
@@ -153,7 +155,8 @@ def findTimesAll(nameList, webList):
         try:
             page = requests.get(address)
         except:
-            print("http connection failed, trying https now")
+            print("http connection failed, sleeping for 60 seconds and trying again")
+            time.sleep(60)
             page = requests.get(address)
             print('{} ({})'.format(page.url, page.status_code))
 

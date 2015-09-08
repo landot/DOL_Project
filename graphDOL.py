@@ -12,18 +12,18 @@ try:
 except pymongo.errors.ConnectionFailure, e:
    print "Could not connect to MongoDB: %s" % e
    conn
-db = conn['test-database3']
+db = conn['test-database4']
 
-
+#test
 
 
 py.sign_in('timowland', 'uw95g37quk')
 
-title = 'DOL Wait Times in Seattle'
+title = 'DOL Wait Times Washington'
 
 labels = ['New Drivers License', 'Drivers License Renewal']
 
-colors = ['#008B45', '#7D9EC0']
+colors = ['#008B45', '#7D9EC0', '']
 
 mode_size = [8,8]
 
