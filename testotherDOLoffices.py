@@ -152,13 +152,14 @@ def findTimesAll(nameList, webList):
         name = nameList[count]
         address = webList[count]
 
-        try:
-            page = requests.get(address)
-        except:
-            print("http connection failed, sleeping for 60 seconds and trying again")
-            time.sleep(60)
-            page = requests.get(address)
-            print('{} ({})'.format(page.url, page.status_code))
+        while True:
+            try:
+                page = requests.get(address)
+                break
+            except:
+                print("https connection failed, sleeping for 60 seconds and trying again")
+                time.sleep(2)
+
 
 
         tree = html.fromstring(page.text)
@@ -203,7 +204,8 @@ while True:
         time.sleep(50)
         curr = datetime.utcnow() + timedelta(hours=-7)
         print curr
-
+    print('waiting...')
+    print("--- %s seconds ---" % (time.time() - start_time))
     time.sleep(60)
 
 
