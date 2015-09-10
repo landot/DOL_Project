@@ -193,7 +193,7 @@ max = datetime.now().replace(hour=17, minute=00, second=0, microsecond=0)
 
 while True:
     curr = datetime.utcnow() + timedelta(hours=-7)
-    while True and min < curr < max:
+    while min < curr < max:
         runTime = time.time()
         findTimes(officeName, officeWebAddress)
         findTimesAll(officeNameAll, officeWebAddressAll)
@@ -204,9 +204,14 @@ while True:
         time.sleep(50)
         curr = datetime.utcnow() + timedelta(hours=-7)
         print curr
+
     print('waiting...')
+    print('Current Time:')
+    print curr
     print("--- %s seconds ---" % (time.time() - start_time))
     time.sleep(60)
+    min = datetime.now().replace(hour=8, minute=00, second=0, microsecond=0)
+    max = datetime.now().replace(hour=17, minute=00, second=0, microsecond=0)
 
 
 
