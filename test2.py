@@ -120,5 +120,5 @@ while True:
     print '________________________________'
     print("--- %s seconds ---" % (time.time() - start_time))
     time.sleep(60)
-    min = datetime.now().replace(hour=8, minute=00, second=0, microsecond=0)
-    max = datetime.now().replace(hour=17, minute=00, second=0, microsecond=0)
+    min = datetime.now().replace(hour=8, minute=30, second=0, microsecond=0)
+    max = datetime.now().replace(hour=16, minute=30, second=0, microsecond=0)
