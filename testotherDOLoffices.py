@@ -58,10 +58,22 @@ officeWebAddressAll = ['https://fortress.wa.gov/dol/dolprod/dsdoffices/OfficeInf
 def findNewTimes(tree):
     license = tree.xpath("string(//*[@id=\"ctl00_Main_waittime\"]/text()[2])")
     times = license.split(" ")
-    hour = float(times[0])
-    minute = float(times[2])
-    time = hour * 60 + minute
-    return time
+    hour = None
+    print license
+    print times
+    if not license:
+        print('Website error')
+        return None
+    else:
+        if times[0].isdigit():
+            hour = float(times[0])
+        if times[2].isdigit():
+            minute = float(times[2])
+        if hour != None:
+            time = hour * 60 + minute
+        else:
+            time = minute
+        return time
 
 
 #gets renewal times, current time
@@ -69,24 +81,28 @@ def findRenewTimes(tree):
     renew = tree.xpath("string(//*[@id=\"ctl00_Main_waittime\"])")
     times = renew.split(" ")
 
-    hour = times[17][18:]
-    if hour.isdigit():
-        realHour = float(times[17][18:])
+    if not renew:
+        print('Website error')
+        return None
     else:
-        realHour = '0'
+        hour = times[17][18:]
+        if hour.isdigit():
+            realHour = float(times[17][18:])
+        else:
+            realHour = '0'
 
-    realMinute = float(times[19])
+        realMinute = float(times[19])
 
-    if realHour == '0':
-        time = realMinute
-    elif realHour == '1':
-        time = 60 + realMinute
-    elif realHour == '2':
-        time = 120 + realMinute
-    else:
-        time = realMinute
+        if realHour == '0':
+            time = realMinute
+        elif realHour == '1':
+            time = 60 + realMinute
+        elif realHour == '2':
+            time = 120 + realMinute
+        else:
+            time = realMinute
 
-    return time
+        return time
 
 
 def go(name, address):
@@ -201,7 +217,7 @@ while True:
         print("--- %s seconds ---" % (time.time() - runTime))
         print('')
         print("--- %s seconds ---" % (time.time() - start_time))
-        time.sleep(50)
+        time.sleep(60 - (time.time() - runTime))
         curr = datetime.utcnow() + timedelta(hours=-7)
         print curr
 

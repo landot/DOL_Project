@@ -25,7 +25,9 @@ start_time = time.time()
 def findNewTimes(tree):
     license = tree.xpath("string(//*[@id=\"ctl00_Main_waittime\"]/text()[2])")
     times = license.split(" ")
-    hour = float(times[0])
+    hour = None
+    if (times[0]).isdigit():
+        hour = float(times[0])
     minute = float(times[2])
     time = hour * 60 + minute
     return time
