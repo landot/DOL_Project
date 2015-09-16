@@ -43,7 +43,7 @@ for office in officeName:
 
 
     for obj in db.test.alldol.find({'Location:': office}):
-        if obj['Timestamp'].strftime("%m %d") == "09 11":
+        if obj['Timestamp'].strftime("%m %d") == "09 15":
             x_data[0].append(obj['Timestamp'].strftime("%H:%M"))
             x_data[1].append(obj['Timestamp'].strftime("%H:%M"))
             y_data[0].append(obj['New License Wait Time:'])
